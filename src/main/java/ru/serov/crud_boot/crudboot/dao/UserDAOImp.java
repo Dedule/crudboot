@@ -1,8 +1,7 @@
 package ru.serov.crud_boot.crudboot.dao;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 import ru.serov.crud_boot.crudboot.models.User;
 
@@ -10,10 +9,11 @@ import java.util.List;
 
 @Repository
 public class UserDAOImp implements UserDAO{
+    private final SessionFactory sf;
 
-    @PersistenceContext
-    private EntityManager sf;
-
+    public UserDAOImp(SessionFactory sf) {
+        this.sf = sf;
+    }
 
 
     public List<User> index() {
